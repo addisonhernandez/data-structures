@@ -37,6 +37,18 @@ var Queue = function() {
    * @returns {String} - The string at the front of the queue
    */
   someInstance.dequeue = function() {
+    var isEmpty = (storage.tail + 1 - storage.head === 0);
+    // if the queue is not empty
+    if (!isEmpty) {
+      // save element at head to variable
+      var deletedItem = storage[storage.head];
+      // delete property at head
+      delete storage[storage.head];
+      // increment head
+      storage.head++;
+      // return saved element
+      return deletedItem;
+    }
   };
 
   /**
@@ -44,6 +56,7 @@ var Queue = function() {
    * @returns {Number} - The number of items in the queue
    */
   someInstance.size = function() {
+    return storage.tail + 1 - storage.head;
   };
 
   return someInstance;
