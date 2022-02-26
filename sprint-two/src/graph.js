@@ -2,9 +2,6 @@
 
 // Instantiate a new graph
 var Graph = function() {
-  // create number of vertices property
-  //   use size of map obj to determine number of vertices? --not sure about this one
-  //   if map obj won't work, could we set to 0 and adjust methods to increment/decrement as needed?
   // create adjacency list property and set equal to new Map object
   //   use adjacency list over matrix bc matrices are confusing
   //   Map obj key --> vertex, value --> array of adjacent node
@@ -13,9 +10,6 @@ var Graph = function() {
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  // set new adjacentList property
-  //   key --> node
-  //   value --> empty array
   if (!this.adjList.has(node)) {
     this.adjList.set(node, []);
   }
@@ -23,8 +17,6 @@ Graph.prototype.addNode = function(node) {
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
-  // get vertices from adjList via this.adjList.keys()?
-  // use _.contains to check if vertex is represented in graph?
   return this.adjList.has(node);
 };
 
@@ -102,6 +94,21 @@ Graph.prototype.forEachNode = function(cb) {
   this.adjList.forEach(function (neighbors, vertex) {
     cb(vertex);
   });
+};
+
+
+// graph.printGraph()
+
+// v1 -> n1, n2, n3
+// v2 -> ...
+
+Graph.prototype.printGraph = function() {
+  var result = '';
+  this.adjList.forEach(function(neighbors, vertex) {
+    result += vertex + ' --> ' + neighbors + '\n';
+  });
+  console.log(result);
+  return result;
 };
 
 /*

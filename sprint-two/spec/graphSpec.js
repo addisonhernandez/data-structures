@@ -68,4 +68,14 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should generate a representation of the adjacency list', function () {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(5, 4);
+    expect(graph.printGraph()).to.be.a('string');
+    expect(graph.printGraph()).to.equal('4 --> 5\n5 --> 4\n');
+    graph.removeNode(5);
+    expect(graph.printGraph()).to.equal('4 --> \n');
+  });
 });
