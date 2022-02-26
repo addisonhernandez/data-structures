@@ -52,4 +52,9 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should accept strings as input', function() {
+    linkedList.addToTail('string');
+    expect(linkedList.contains('string')).to.equal(true);
+    expect(linkedList.removeHead()).to.equal('string');
+  });
 });
