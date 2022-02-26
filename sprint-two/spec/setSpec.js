@@ -24,4 +24,20 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should find the intersection of two sets', function () {
+    set.add('Susan Sarandon');
+    set.add('Danny Glover');
+    set.add('Mel Gibson');
+
+    const set2 = Set();
+    set2.add('Tom Hanks');
+    set2.add('Mel Gibson');
+
+    const superSet = set.intersection(set2);
+
+    // expect(superSet).to.be.a('Set');
+    expect(superSet.contains('Tom Hanks')).to.be.false;
+    expect(superSet.contains('Mel Gibson')).to.be.true;
+    expect(superSet.contains('Susan Sarandon')).to.be.false;
+  });
 });

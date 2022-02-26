@@ -40,6 +40,17 @@ setPrototype.remove = function(item) {
   delete this._storage[item];
 };
 
+setPrototype.intersection = function(set) {
+  var set1Keys = Object.keys(this._storage);
+  var set2Keys = Object.keys(set._storage);
+  var newSet = Set();
+  _.each(_.intersection(set1Keys, set2Keys), function(item) {
+    debugger;
+    newSet.add(item);
+  });
+  return newSet;
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */
