@@ -9,7 +9,6 @@ var Graph = function() {
   //   use adjacency list over matrix bc matrices are confusing
   //   Map obj key --> vertex, value --> array of adjacent node
   this.adjList = new Map();
-  this.nOfVertices = this.adjList.size; // TODO: how will we use this?
 };
 
 // Add a node to the graph, passing in the node's value.
@@ -84,6 +83,7 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
   newNeighbors = _.reject(this.adjList.get(fromNode), function (neighbor) {
     return neighbor === toNode;
   });
+  // newNeighbors = _.reject(this.adjList.get(fromNode), neighbor => neighbor === toNode);
   this.adjList.set(fromNode, newNeighbors);
 
   // remove edge to -> from
@@ -99,11 +99,6 @@ Graph.prototype.forEachNode = function(cb) {
   // get all vertices from adjList
   // iterate over vertices and call cb on each
 
-  // _.invoke? it's not working though :(
-  // I'll dig into the API: https://underscorejs.org/#invoke
-
-  // _.invoke(this.adjList.keys(), cb);
-
   this.adjList.forEach(function (neighbors, vertex) {
     cb(vertex);
   });
@@ -113,15 +108,22 @@ Graph.prototype.forEachNode = function(cb) {
  * Complexity: What is the time complexity of the above functions?
  */
 // addNode:
+// O(1)
 
 // contains:
+// O(1)
 
 // removeNode:
+// O(n^2), n := # of neighbors
 
 // hasEdge:
+// O(n)
 
 // addEdge:
+// O(1)
 
 // removeEdge:
+// O(n)
 
 // forEachNode:
+// O(n * k) k := runtime of cb
