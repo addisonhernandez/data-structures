@@ -40,5 +40,11 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
-
+  it('should return the greatest value found in the tree', function() {
+    tree.addChild(1);
+    tree.addChild(3);
+    tree.children[0].addChild(5);
+    tree.children[0].addChild(9);
+    expect(tree.findMax()).to.equal(9);
+  });
 });

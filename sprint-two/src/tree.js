@@ -39,6 +39,21 @@ treeMethods.contains = function(target) {
   return searchChild(this);
 };
 
+treeMethods.findMax = function() {
+  var maxVal = -Infinity;
+
+  var findMaxOfChildren = function(tree) {
+    if (tree.value > maxVal) {
+      maxVal = tree.value;
+    }
+
+    _.each(tree.children, child => findMaxOfChildren(child));
+  };
+
+  findMaxOfChildren(this);
+
+  return maxVal;
+};
 
 
 /*
